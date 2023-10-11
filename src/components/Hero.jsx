@@ -79,7 +79,9 @@ const Hero = () => {
           </div>
         </div>
 
-        <div id="rightArea" className='w-1/2 flex flex-col items-center justify-center mt-16'>
+        <div 
+          id="rightArea" 
+          className={`w-1/2 flex flex-col items-center justify-center ${isMobile ? 'mt-16' : 'mt-24'}`}>
           <img 
               src={personalInfo[0].icon} 
               alt="icon" 
