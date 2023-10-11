@@ -6,10 +6,12 @@ import { styles } from '../styles'; // Styles component
 import { ComputersCanvas } from './canvas'; // Canvas component
 import ViaMobileContext from '../contexts/ViaMobileContext'; // import ViaMobileContext from React Context
 import { personalInfo } from '../constants';
+import useIsMobile from '../hooks/useIsMobile';
+
 
 const Hero = () => {
   const viaMobile = useContext(ViaMobileContext);
-
+  const isMobile = useIsMobile();
   const [sentence, setSentence] = useState(1);
   const [isAnimating, setIsAnimating] = useState(true);
   const sentenceHeight = '40px'; 
@@ -52,7 +54,7 @@ const Hero = () => {
                 }}>
               <div className="absolute inset-0 bg-[#fc6f03]"></div>
             </div>
-            <div className='w-2 sm:h-80 h-40 orange-gradient' />
+            <div className='w-1.5 sm:h-80 h-40 orange-gradient' />
           </div>
 
           <div className='flex flex-col items-start'>
@@ -61,9 +63,6 @@ const Hero = () => {
               <br />
             </h2>
 
-            {/* <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-              I develop full-stack web applications. <br/> I also have expertise in deploying & managing APPs on the cloud.
-            </p> */}
             <div className={`relative h-[${sentenceHeight}] w-full flex items-center`}>
               <motion.div
                   className={`${styles.heroSubText} mt-2 w-full text-left ${sentence === 1 ? 'text-white' : 'text-[#fc6f03]'} transition-all absolute top-1/2 left-0 transform -translate-y-1/2`}
@@ -78,11 +77,15 @@ const Hero = () => {
               </motion.div>
             </div>
           </div>
-      </div>
+        </div>
 
-        <div id="rightArea" className='w-1/2 flex flex-col items-center justify-center mt-24'>
-          <img src={personalInfo[0].icon} alt="icon" className="w-36 h-36 rounded-full" />
-        </div>     
+        <div id="rightArea" className='w-1/2 flex flex-col items-center justify-center mt-16'>
+          <img 
+              src={personalInfo[0].icon} 
+              alt="icon" 
+              className={`${isMobile ? 'w-28 h-28' : 'w-36 h-36'} rounded-xl`} 
+          />
+        </div>    
       </div>
 
       <ComputersCanvas/>
