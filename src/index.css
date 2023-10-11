@@ -43,10 +43,15 @@
   );
 }
 
-.orange-gradient {
+/* .orange-gradient {
   background: #fc6f03;
   background: linear-gradient(-90deg, #fc6f03 0%, rgba(60, 51, 80, 0) 100%);
   background: -webkit-linear-gradient(-90deg, #fc6f03 0%, rgba(60, 51, 80, 0) 100%);
+} */
+.orange-gradient {
+  background: #fc6f03;
+  background: linear-gradient(-90deg, #fc6f03 0%, #fc6f03 80%, rgba(60, 51, 80, 0) 100%);
+  background: -webkit-linear-gradient(-90deg, #fc6f03 0%, #fc6f03 80%, rgba(60, 51, 80, 0) 100%);
 }
 
 

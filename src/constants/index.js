@@ -22,7 +22,8 @@ import {
     fyyur,
     trivia,
     ht,
-    career
+    career,
+    portfolio
   } from "../assets";
   
   export const navLinks = [
@@ -268,6 +269,39 @@ import {
       ],
       image: trivia,
       source_code_link: "https://github.com/DylanZhang25/fullstack-webproject-trivia",
+    },
+    {
+      name: "My Portfolio Website",
+      description:
+        "I've been using React to test Three.js model rendering on the web, and also I've been enjoying the learning process by downloading free 3D models and altering them a bit with Render software. Importing 3D models and presenting them to the user from multiple angles makes for a better user experience.",
+      tags: [
+        {
+          name: "HTML",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "JavaScript",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "React.js",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Node.js",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Three.js",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Vite",
+          color: "blue-text-gradient",
+        },
+      ],
+      image: portfolio,
+      source_code_link: "https://github.com/DylanZhang25/my_3d_portfolio",
     },
   ];
   

@@ -28,6 +28,7 @@ import fyyur from "./fyyur.png";
 import trivia from "./trivia.png";
 import ht from "./ht.png";
 import career from "./career.png";
+import portfolio from "./portfolio.png";
 
 export {
   logo,
@@ -58,5 +59,6 @@ export {
   postgres,
   fsnd,
   fyyur,
-  trivia
+  trivia,
+  portfolio
 };

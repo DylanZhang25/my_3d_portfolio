@@ -1,6 +1,6 @@
 // src\components\Hero.jsx
 
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { motion } from 'framer-motion'; // Animation library for React
 import { styles } from '../styles'; // Styles component
 import { ComputersCanvas } from './canvas'; // Canvas component
@@ -10,10 +10,39 @@ import { personalInfo } from '../constants';
 const Hero = () => {
   const viaMobile = useContext(ViaMobileContext);
 
+  const [sentence, setSentence] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(true);
+  const sentenceHeight = '40px'; 
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+        if (sentence === 1) {
+            setIsAnimating(false);
+            setTimeout(() => {
+              setSentence(2);
+              setIsAnimating(true);
+            }, 1000);
+        } else {
+            setIsAnimating(false);
+            setTimeout(() => {
+              setSentence(1);
+              setIsAnimating(true);
+            }, 1000);
+        }
+    }, 2000);
+
+    return () => clearInterval(timer);
+  }, [sentence]);
+
+  const variants = {
+    enter: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 20 },
+  };
+
   return (
     <section className='relative w-full h-screen mx-auto'>
       <div
-        className={`absolute inset-0 top-[100px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 mt-10`}
+        className={`absolute inset-0 top-[95px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 mt-10`}
       >
         <div id="leftArea" className='w-1/2 flex flex-row items-center'>
           <div className='flex flex-col items-center mr-10'>
@@ -23,27 +52,42 @@ const Hero = () => {
                 }}>
               <div className="absolute inset-0 bg-[#fc6f03]"></div>
             </div>
-            <div className='w-1 sm:h-80 h-40 orange-gradient ' />
+            <div className='w-2 sm:h-80 h-40 orange-gradient' />
           </div>
 
           <div className='flex flex-col items-start'>
             <h2 className={`${styles.heroHeadText} text-white`}>
-              Hi, I'm <span className='text-[#fc6f03]'>Haitian</span>
+              Hi, I'm <span className='text-[#fc6f03]'>Haitian </span>
+              <br />
             </h2>
-            <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-              I develop full-stack web applications. <br/> I have expertise in deploying & managing APPs on the cloud.
-            </p>
-          </div>
-        </div>
 
-        <div id="rightArea" className='w-1/2 flex flex-col items-center justify-center mt-16'>
+            {/* <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+              I develop full-stack web applications. <br/> I also have expertise in deploying & managing APPs on the cloud.
+            </p> */}
+            <div className={`relative h-[${sentenceHeight}] w-full flex items-center`}>
+              <motion.div
+                  className={`${styles.heroSubText} mt-2 w-full text-left ${sentence === 1 ? 'text-white' : 'text-[#fc6f03]'} transition-all absolute top-1/2 left-0 transform -translate-y-1/2`}
+                  initial="exit"
+                  animate={isAnimating ? "enter" : "exit"}
+                  variants={variants}
+                  transition={{ duration: 1 }}
+              >
+                  {sentence === 1
+                      ? "I develop full-stack applications."
+                      : "I also have expertise in deploying APPs on the cloud."}
+              </motion.div>
+            </div>
+          </div>
+      </div>
+
+        <div id="rightArea" className='w-1/2 flex flex-col items-center justify-center mt-24'>
           <img src={personalInfo[0].icon} alt="icon" className="w-36 h-36 rounded-full" />
         </div>     
       </div>
 
       <ComputersCanvas/>
 
-      <div className='absolute xs:bottom-100 bottom-14 w-full flex justify-center items-center'>
+      <div className='absolute xs:bottom-100 bottom-16 w-full flex justify-center items-center'>
         <a href="#about">
           <div className=
             {viaMobile ? 'w-[25px] h-[55px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2' : 'w-[35px] h-[65px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'}
